@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status da Guerra chamada FCC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #ffe5e5, #ffcccc);
+            color: #4a0000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            padding: 0 20px;
+            text-align: center;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Background animation */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,0,0,0.1), rgba(255,0,0,0) 70%);
+            animation: rotate 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        img {
+            width: 100%;
+            max-width: 750px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: imageFloat 4s ease-in-out infinite alternate;
+        }
+
+        img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes imageFloat {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #b30000;
+            margin: 0;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+            font-weight: 600;
+            animation: textBounce 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes textBounce {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        p {
+            font-size: 1.7rem;
+            margin: 0;
+            color: #660000;
+        }
+
+        .contador {
+            margin-top: 20px;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #ff1a1a;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            transition: color 0.5s ease;
+            animation: fadeColor 2s infinite alternate;
+        }
+
+        @keyframes fadeColor {
+            from { color: #ff1a1a; }
+            to { color: #ff4d4d; }
+        }
+
+        .pergunta {
+            margin-top: 20px;
+            font-size: 1.4rem;
+            color: #cc0000;
+            font-style: italic;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .pergunta:hover {
+            color: #ff4d4d;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            p { font-size: 1.4rem; }
+            .contador { font-size: 1.8rem; }
+            .pergunta { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://cdn.fcc.org.br/PRODUCAO/eY4uhGpLrjmyY61CdQplMmtyK6v83SLYguU8QTSL6CC0vLPtzcYxfi0BaeT2WQIw7OSiA4wcw81MfMNnRJ24jxuxbpEs3rZyDuhr1zAwB5aQJ3W6FgdvOegLRIIoMsW2n9VecbnVNgXgEzTh.webp" alt="Imagem no topo">
+
+    <h1>Dias sem baixas nesta guerra:</h1>
+    <p class="contador" id="contador"></p>
+    <p class="pergunta">E você, arrisca um palpite da próxima baixa?</p>
+
+    <script>
+        const dataInicio = new Date('2024-10-18');
+
+        function atualizarContadores() {
+            const agora = new Date();
+            const diffTime = Math.abs(agora - dataInicio);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+            const diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+            document.getElementById('contador').textContent = 
+                `${diffDays} dias, ${diffHours} horas, ${diffMinutes} minutos e ${diffSeconds} segundos`;
+        }
+
+        setInterval(atualizarContadores, 1000);
+    </script>
+</body>
+</html>
