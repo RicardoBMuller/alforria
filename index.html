@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status da Guerra chamada FCC</title>
+    <title>Status da Carta de Alforria</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
@@ -127,16 +127,25 @@
 <body>
     <img src="https://cdn.fcc.org.br/PRODUCAO/eY4uhGpLrjmyY61CdQplMmtyK6v83SLYguU8QTSL6CC0vLPtzcYxfi0BaeT2WQIw7OSiA4wcw81MfMNnRJ24jxuxbpEs3rZyDuhr1zAwB5aQJ3W6FgdvOegLRIIoMsW2n9VecbnVNgXgEzTh.webp" alt="Imagem no topo">
 
-    <h1>Dias sem baixas nesta guerra:</h1>
+    <h1>Contagem regressiva para o grande dia:</h1>
     <p class="contador" id="contador"></p>
-    <p class="pergunta">E você, arrisca um palpite da próxima baixa?</p>
+    <p class="pergunta">E você, arrisca um palpite sobre o que acontecerá?</p>
 
     <script>
-        const dataInicio = new Date('2024-10-18');
+        // Data alvo (12 de junho de 2026)
+        const dataAlvo = new Date('2026-06-12');
 
         function atualizarContadores() {
             const agora = new Date();
-            const diffTime = Math.abs(agora - dataInicio);
+            const diffTime = dataAlvo - agora;
+
+            // Verifica se a data já passou
+            if (diffTime <= 0) {
+                document.getElementById('contador').textContent = "O grande dia chegou!";
+                return;
+            }
+
+            // Calcula o tempo restante
             const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
             const diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
