@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carta de Alforria</title>
+    <title>Status da Carta de Alforria</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
@@ -131,6 +131,7 @@
     <p class="contador" id="contador"></p>
     <p class="pergunta">E você, arrisca um palpite sobre o que acontecerá?</p>
 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
         // Data alvo (12 de junho de 2026)
         const dataAlvo = new Date('2026-06-12');
@@ -156,6 +157,22 @@
         }
 
         setInterval(atualizarContadores, 1000);
+
+        // Função para lançar fogos de artifício
+        function lancarFogos() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: {
+                    x: Math.random(),
+                    y: Math.random()
+                },
+                colors: ['#ff0000', '#ff8000', '#ffff00', '#00ff00', '#0000ff', '#8000ff']
+            });
+        }
+
+        // Lançar fogos a cada 2 segundos
+        setInterval(lancarFogos, 2000);
     </script>
 </body>
 </html>
