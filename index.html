@@ -7,172 +7,170 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
+        :root {
+            --primary-color: #b30000;
+            --secondary-color: #660000;
+            --accent-color: #ff1a1a;
+            --background-start: #ffe5e5;
+            --background-end: #ffcccc;
+            --number-color: #4a4a4a; /* Cor cinza para os números */
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #ffe5e5, #ffcccc);
-            color: #4a0000;
+            background: linear-gradient(135deg, var(--background-start), var(--background-end));
+            color: var(--secondary-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            padding: 0 20px;
+            padding: 20px;
             text-align: center;
-            overflow: hidden;
+            overflow-x: hidden;
             animation: fadeIn 1.5s ease-in-out;
         }
 
-        /* Background animation */
-        body::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,0,0,0.1), rgba(255,0,0,0) 70%);
-            animation: rotate 10s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         img {
             width: 100%;
             max-width: 750px;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: imageFloat 4s ease-in-out infinite alternate;
+            animation: imageFloat 6s ease-in-out infinite alternate;
         }
 
         img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes imageFloat {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         h1 {
             font-size: 3rem;
-            color: #b30000;
-            margin: 0;
-            letter-spacing: 3px;
+            color: var(--primary-color);
+            margin: 0 0 20px;
+            letter-spacing: 2px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-            font-weight: 600;
-            animation: textBounce 1s ease-in-out infinite alternate;
-        }
-
-        @keyframes textBounce {
-            from { transform: scale(1); }
-            to { transform: scale(1.05); }
-        }
-
-        p {
-            font-size: 1.7rem;
-            margin: 0;
-            color: #660000;
+            animation: textBounce 2s ease-in-out infinite alternate;
         }
 
         .contador {
-            margin-top: 20px;
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 600;
-            color: #ff1a1a;
+            color: var(--accent-color);
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-            transition: color 0.5s ease;
-            animation: fadeColor 2s infinite alternate;
-        }
-
-        @keyframes fadeColor {
-            from { color: #ff1a1a; }
-            to { color: #ff4d4d; }
+            margin: 30px 0;
+            animation: fadeColor 3s infinite alternate;
         }
 
         .pergunta {
-            margin-top: 20px;
-            font-size: 1.4rem;
-            color: #cc0000;
+            font-size: 1.6rem;
+            color: var(--secondary-color);
             font-style: italic;
             letter-spacing: 1px;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            margin-top: 30px;
         }
 
         .pergunta:hover {
-            color: #ff4d4d;
+            color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .number {
+            color: var(--number-color);
+            font-weight: bold;
+            font-size: 2.8rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes imageFloat {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        @keyframes textBounce {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        @keyframes fadeColor {
+            0% { color: var(--accent-color); }
+            100% { color: var(--primary-color); }
         }
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            p { font-size: 1.4rem; }
-            .contador { font-size: 1.8rem; }
-            .pergunta { font-size: 1.2rem; }
+            .contador { font-size: 2rem; }
+            .pergunta { font-size: 1.4rem; }
+            .number { font-size: 2.4rem; }
         }
     </style>
 </head>
 <body>
-    <img src="https://cdn.fcc.org.br/PRODUCAO/eY4uhGpLrjmyY61CdQplMmtyK6v83SLYguU8QTSL6CC0vLPtzcYxfi0BaeT2WQIw7OSiA4wcw81MfMNnRJ24jxuxbpEs3rZyDuhr1zAwB5aQJ3W6FgdvOegLRIIoMsW2n9VecbnVNgXgEzTh.webp" alt="Imagem no topo">
+    <div class="container">
+        <img src="https://cdn.fcc.org.br/PRODUCAO/eY4uhGpLrjmyY61CdQplMmtyK6v83SLYguU8QTSL6CC0vLPtzcYxfi0BaeT2WQIw7OSiA4wcw81MfMNnRJ24jxuxbpEs3rZyDuhr1zAwB5aQJ3W6FgdvOegLRIIoMsW2n9VecbnVNgXgEzTh.webp" alt="Imagem no topo">
 
-    <h1>Contagem regressiva para o grande dia:</h1>
-    <p class="contador" id="contador"></p>
-    <p class="pergunta">E você, arrisca um palpite sobre o que acontecerá?</p>
+        <h1>Contagem regressiva para o grande dia</h1>
+        <div class="contador" id="contador"></div>
+        <p class="pergunta">E você, arrisca um palpite sobre o que acontecerá?</p>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
-        // Data alvo (12 de junho de 2026)
         const dataAlvo = new Date('2026-06-12');
 
         function atualizarContadores() {
             const agora = new Date();
             const diffTime = dataAlvo - agora;
 
-            // Verifica se a data já passou
             if (diffTime <= 0) {
                 document.getElementById('contador').textContent = "O grande dia chegou!";
                 return;
             }
 
-            // Calcula o tempo restante
             const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
             const diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
             const diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000);
 
-            document.getElementById('contador').textContent = 
-                `${diffDays} dias, ${diffHours} horas, ${diffMinutes} minutos e ${diffSeconds} segundos`;
+            const contadorHTML = `
+                <span class="number">${diffDays}</span> dias<br>
+                <span class="number">${diffHours}</span> horas<br>
+                <span class="number">${diffMinutes}</span> minutos<br>
+                <span class="number">${diffSeconds}</span> segundos
+            `;
+            document.getElementById('contador').innerHTML = contadorHTML;
         }
 
         setInterval(atualizarContadores, 1000);
 
-        // Função para lançar fogos de artifício
         function lancarFogos() {
             confetti({
                 particleCount: 100,
                 spread: 70,
-                origin: {
-                    x: Math.random(),
-                    y: Math.random()
-                },
+                origin: { x: Math.random(), y: Math.random() - 0.2 },
                 colors: ['#ff0000', '#ff8000', '#ffff00', '#00ff00', '#0000ff', '#8000ff']
             });
         }
 
-        // Lançar fogos a cada 2 segundos
-        setInterval(lancarFogos, 2000);
+        setInterval(lancarFogos, 3000);
     </script>
 </body>
 </html>
